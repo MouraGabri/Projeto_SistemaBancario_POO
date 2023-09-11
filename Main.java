@@ -20,13 +20,30 @@ public class Main {
             switch (opcao) {
                 case 1:
                     if (usuarioNovoLogin == null) {
-                        Usuario.cadastrarUsuario();
+                        usuarioNovoLogin = Usuario.cadastrarUsuario();
 
                     } else {
                         System.out.println("Usúario já possui cadastro");
                     }
+
                     break;
                 case 2:
+                    if (usuarioNovoLogin != null) {
+                        System.out.print("Senha: ");
+                        ler.nextLine(); // Limpa o buffer de entrada
+
+                        String senha = ler.nextLine();
+
+                        if (usuarioNovoLogin.loginUsuario(senha)) {
+                            System.out.println("Senha correta! Bem-vindo, " + usuarioNovoLogin.getNome()
+                                    + "!");
+
+                        } else {
+                            System.out.println("Senha incorreta. Tente novamente.");
+                        }
+                    } else {
+                        System.out.println("Você precisa realizar o cadastro primeiro.");
+                    }
                     break;
                 default:
                     System.out.println("Sistema encerrado!!");
