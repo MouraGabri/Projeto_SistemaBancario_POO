@@ -11,6 +11,7 @@ public class Main {
 
         int opcao;
         Usuario usuarioNovoLogin = null;
+        Usuario newUsuario = new Usuario(null, null, null, null, null);
         do {
             System.out.println("[1]--> Realizar Cadastro\n" + "[2]--> Logar no sistema\n"
                     + "[3]--> Sair do sistema");
@@ -20,7 +21,7 @@ public class Main {
             switch (opcao) {
                 case 1:
                     if (usuarioNovoLogin == null) {
-                        usuarioNovoLogin = Usuario.cadastrarUsuario();
+                        usuarioNovoLogin = newUsuario.cadastrarUsuario();
 
                     } else {
                         System.out.println("Usúario já possui cadastro");

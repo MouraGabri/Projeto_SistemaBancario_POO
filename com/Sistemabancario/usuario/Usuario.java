@@ -15,17 +15,29 @@ public class Usuario extends Cliente {
         this.senha = senha;
     }
 
-    public static Usuario cadastrarUsuario() {
+    public Usuario cadastrarUsuario() {
         Scanner ler = new Scanner(System.in);
         System.out.println("_____________________________________________");
         System.out.println("Seja bem-vindo!! Realize seu cadastro");
         System.out.print("Nome:");
         String nome = ler.nextLine();
-        System.out.print("Idade:");
-        Integer idade = ler.nextInt();
+        try {
+            System.out.print("Idade:");
+            Integer idade = ler.nextInt();
+            if (idade <= 0 || idade >= 100) {
+                System.out.println("Erro: A idade deve ser um número inteiro positivo.");
+                idade = null;
+            }
 
-        // Consumir a quebra de linha pendente
-        ler.nextLine();
+        } catch (Exception e) {
+            System.out.println("{===Idade é inválida===}");
+            System.out.print("Informe uma idade válida:");
+
+            ler.nextLine();// Consumir a quebra de linha pendente
+            idade = ler.nextInt();
+
+        }
+        ler.nextLine();// Consumir a quebra de linha pendente
 
         System.out.print("Cpf:");
         String cpf = ler.nextLine();
@@ -44,7 +56,7 @@ public class Usuario extends Cliente {
         Usuario newUsuario = new Usuario(nome, idade, cpf, login, newsenha);
         System.out.println("Usuário cadastrado com sucesso:\n" + newUsuario.toString());
 
-        return newUsuario; // Retorna o novo usuário cadastrado
+        return newUsuario; // Retorna um novo usuário cadastrado
     }
 
     public String getLogin() {
