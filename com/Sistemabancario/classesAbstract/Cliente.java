@@ -4,9 +4,9 @@ public abstract class Cliente {
 
     private String nome;
     protected Integer idade;
-    private String cpf;
+    private Long cpf;
 
-    public Cliente(String nome, Integer idade, String cpf) {
+    public Cliente(String nome, Integer idade, Long cpf) {
 
         this.nome = nome;
         this.idade = idade;
@@ -30,11 +30,11 @@ public abstract class Cliente {
         this.idade = idade;
     }
 
-    public String getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
