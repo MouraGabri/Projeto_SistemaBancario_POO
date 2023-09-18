@@ -23,6 +23,8 @@ public class Usuario extends Cliente {
         System.out.println("Seja bem-vindo!! Realize seu cadastro");
         System.out.print("Nome:");
         String nome = ler.nextLine();
+        this.setNome(nome);
+
         try {
             System.out.print("Idade:");
             Integer idade = ler.nextInt();

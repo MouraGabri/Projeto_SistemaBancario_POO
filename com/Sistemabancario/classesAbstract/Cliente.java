@@ -2,7 +2,7 @@ package com.Sistemabancario.classesAbstract;
 
 public abstract class Cliente {
 
-    private String nome;
+    public String nome;
     protected Integer idade;
     private Long cpf;
 

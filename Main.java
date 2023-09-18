@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import com.Sistemabancario.banco.Banco;
 import com.Sistemabancario.usuario.Usuario;
 
 public class Main {
@@ -65,6 +66,7 @@ public class Main {
                     Thread.sleep(1000);
                 } catch (Exception e) {
                 }
+                Banco newBanco = new Banco(null);
                 System.out.println("Agora que você possui o seu cadastro\n" + "Desfrute dos nossos serviços");
                 System.out.println("[1]--> Vincule-se à um banco\n" + "[2]--> Crie sua conta bancária");
                 System.out.print("-->:");
@@ -72,6 +74,9 @@ public class Main {
 
                 switch (opcao) {
                     case 1:
+                        newBanco.selecionarBanco();
+                        break;
+                    case 2:
 
                         break;
 
