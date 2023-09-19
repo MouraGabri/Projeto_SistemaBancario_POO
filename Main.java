@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import com.Sistemabancario.banco.Banco;
+import com.Sistemabancario.banco.ContaBancaria;
 import com.Sistemabancario.usuario.Usuario;
 
 public class Main {
@@ -67,17 +68,27 @@ public class Main {
                 } catch (Exception e) {
                 }
                 Banco newBanco = new Banco(null);
+                ContaBancaria contaBancaria = new ContaBancaria(null, null, null, null, newUsuario);
                 System.out.println("Agora que você possui o seu cadastro\n" + "Desfrute dos nossos serviços");
-                System.out.println("[1]--> Vincule-se à um banco\n" + "[2]--> Crie sua conta bancária");
+                System.out.println("[1]--> Vincule-se à um banco\n" + "[2]--> Crie sua conta bancária\n"
+                        + "[3]--> Realizar Deposito");
                 System.out.print("-->:");
                 opcao = ler.nextInt();
-
+                Banco contaBanco = null;
                 switch (opcao) {
                     case 1:
-                        newBanco.selecionarBanco();
+                        if (contaBanco == null) {
+                            contaBanco = newBanco.selecionarBanco();
+                            ;
+                        } else {
+                            System.out.println("Você já selecionou o banco");
+                        }
                         break;
                     case 2:
-
+                        contaBancaria.depositarValor(null);
+                        break;
+                    case 3:
+                        contaBancaria.depositarValor(null);
                         break;
 
                     default:

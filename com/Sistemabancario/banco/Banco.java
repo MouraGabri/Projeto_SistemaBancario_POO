@@ -11,7 +11,7 @@ public class Banco {
         this.nomeDoBanco = nomeDoBanco;
     }
 
-    public void selecionarBanco() {
+    public Banco selecionarBanco() {
         boolean bancoEncontrado = false;
 
         ArrayList<String> bancosDisponiveis = new ArrayList<>();
@@ -45,8 +45,10 @@ public class Banco {
             } catch (Exception e) {
             }
             System.out.println("Você escolheu:" + nomeDoBancoEscolhido);
+            return new Banco(nomeDoBancoEscolhido);
         } else {
             System.out.println("Banco não encontrado");
+            return null;
         }
 
     }
