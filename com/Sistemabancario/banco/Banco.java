@@ -32,6 +32,7 @@ public class Banco {
         String nomeDoBancoEscolhido = ler.nextLine();
         for (String banco : bancosDisponiveis) {
             if (banco.equals(nomeDoBancoEscolhido)) {
+
                 bancoEncontrado = true;
                 break;
 

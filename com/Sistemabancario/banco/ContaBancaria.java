@@ -10,15 +10,19 @@ import com.Sistemabancario.usuario.Usuario;
 public class ContaBancaria {
     private Integer numeroDaConta;
     private Date dataDeAbertura;
-    private Double saldoDisponivel = 0.0;
+    private Double saldoDisponivel;
     private String nomeUsuario; // Adicionando um atributo para armazenar o nome do usuário
+    private Integer senhaContaBancaria;
+    Random random = new Random();
 
     public ContaBancaria(Integer numeroDaConta, Date dataDeAbertura, Double saldoDisponivel,
             String nomeUsuario, Usuario usuario) {
         this.numeroDaConta = numeroDaConta;
         this.dataDeAbertura = dataDeAbertura;
-        this.saldoDisponivel = saldoDisponivel;
+        this.saldoDisponivel = (saldoDisponivel != null) ? saldoDisponivel : 0.0;
         this.nomeUsuario = usuario.getNome();
+        this.senhaContaBancaria = random.nextInt(10000); // Gerando a senha aleatória
+
     }
 
     public void criarContaBancaria() {
@@ -26,8 +30,8 @@ public class ContaBancaria {
         SimpleDateFormat formatarData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dataFormatada = formatarData.format(dataDeAbertura);
 
-        Random random = new Random();
-        Integer senhaContaBancaria = random.nextInt(10000); // método random para gerar número da conta
+        System.out.println("Senha da conta bancária gerada: " + senhaContaBancaria);
+
         System.out.println("   === Crie sua conta bancária ===");
         // Restante do código para criar a conta bancária...
         System.out.println("Nome:" + nomeUsuario);
@@ -37,27 +41,17 @@ public class ContaBancaria {
 
     }
 
-    public void depositarValor(Integer senhaContaBancaria) {
-
+    public void depositarValor(Usuario usuario) {
         Scanner ler = new Scanner(System.in);
-        boolean vericarContaBancaria = false;
-        System.out.println("   ===Para depositar valor um valor===");
-        System.out.println("Informe sua conta Bancária:");
-        Integer numContaBancaria = ler.nextInt();
-        if (numContaBancaria.equals(senhaContaBancaria)) {
-            System.out.println("Senha correta");
-            System.out.println("Informe um valor para depósito:");
-            Double adicioarSaldo = ler.nextDouble(); // lendo o novo saldo
-            saldoDisponivel += adicioarSaldo;// atribuindo o novo saldo para a variavel saldo
-
-            System.out.println("   ===Sua conta foi atualizada===");
-            System.out.println("Nome:" + nomeUsuario);
-            System.out.println("Saldo Disponivel:" + saldoDisponivel);
-            vericarContaBancaria = true;
-
+        System.out.print("Valor do Deposito:");
+        Double valorDeposito = ler.nextDouble();
+        if (valorDeposito > 0) {
+            saldoDisponivel += valorDeposito;
+            System.out.println("   === Depósito realizado ===");
+            System.out.println("Nome:" + usuario.getNome());
+            System.out.println("Saldo Disponível:" + saldoDisponivel);
         } else {
-            System.out.println("Senha incorreta");
-            vericarContaBancaria = false;
+            System.out.println("O valor de depósito deve ser positivo.");
         }
 
     }
@@ -86,4 +80,27 @@ public class ContaBancaria {
         this.saldoDisponivel = saldoDisponivel;
     }
 
+    public void sacarValor(Usuario usuario) {
+        Scanner ler = new Scanner(System.in);
+        System.out.println("Valor a ser sacado:");
+        Double valorSaque = ler.nextDouble();
+        // Verifica se o valor do saque é válido
+        if (valorSaque <= 0) {
+            System.out.println("O valor de saque deve ser positivo.");
+            return;
+        }
+
+        // Verifica se há saldo suficiente para o saque
+        if (saldoDisponivel < valorSaque) {
+            System.out.println("Saldo insuficiente para o saque.");
+            return;
+        }
+
+        // Realiza o saque
+        saldoDisponivel -= valorSaque;
+        System.out.println("Saque de " + valorSaque + " realizado com sucesso.");
+        System.out.println("Nome: " + usuario.getNome());
+        System.out.println("Cpf:" + usuario.getCpf());
+        System.out.println("Saldo Disponível: " + saldoDisponivel);
+    }
 }

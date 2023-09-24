@@ -27,14 +27,14 @@ public class Usuario extends Cliente {
 
         try {
             System.out.print("Idade:");
-            Integer idade = ler.nextInt();
+            idade = ler.nextInt();
+
             if (idade <= 0 || idade >= 100) {
                 System.out.println("{===Erro: A idade deve ser um número inteiro positivo.===}");
                 idade = null;
                 System.out.print("Informe uma idade válida:");
                 idade = ler.nextInt();
             }
-
         } catch (Exception e) {
             System.out.println("{===Idade é inválida===}");
             System.out.print("Informe uma idade válida:");
@@ -42,8 +42,9 @@ public class Usuario extends Cliente {
             ler.nextLine(); // Consumir a quebra de linha pendente
             idade = ler.nextInt();
         }
-        ler.nextLine(); // Consumir a quebra de linha pendente
 
+        this.setIdade(idade); // Atribui a idade lida à variável idade do objeto Usuario
+        ler.nextLine();
         System.out.print("Cpf:");
         Long cpf = ler.nextLong();
 

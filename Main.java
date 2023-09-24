@@ -10,6 +10,7 @@ public class Main {
         int opcao;
         Usuario usuarioNovoLogin = null;
         Usuario newUsuario = new Usuario(null, null, null, null, null);
+        ContaBancaria contaBancaria = new ContaBancaria(null, null, null, null, newUsuario);
 
         Scanner ler = new Scanner(System.in);
         System.out.println("=====Seja bem vindo ao Sistema Bancário !!=====\n");
@@ -24,6 +25,7 @@ public class Main {
 
                 switch (opcao) {
                     case 1:
+
                         if (usuarioNovoLogin == null) {
                             usuarioNovoLogin = newUsuario.cadastrarUsuario();
 
@@ -68,10 +70,9 @@ public class Main {
                 } catch (Exception e) {
                 }
                 Banco newBanco = new Banco(null);
-                ContaBancaria contaBancaria = new ContaBancaria(null, null, null, null, newUsuario);
                 System.out.println("Agora que você possui o seu cadastro\n" + "Desfrute dos nossos serviços");
                 System.out.println("[1]--> Vincule-se à um banco\n" + "[2]--> Crie sua conta bancária\n"
-                        + "[3]--> Realizar Deposito");
+                        + "[3]--> Realizar Deposito\n" + "[4]--> Realizar Saque");
                 System.out.print("-->:");
                 opcao = ler.nextInt();
                 Banco contaBanco = null;
@@ -79,22 +80,23 @@ public class Main {
                     case 1:
                         if (contaBanco == null) {
                             contaBanco = newBanco.selecionarBanco();
-                            ;
-                        } else {
-                            System.out.println("Você já selecionou o banco");
+
                         }
+
                         break;
                     case 2:
-                        contaBancaria.depositarValor(null);
+                        contaBancaria.criarContaBancaria();
                         break;
                     case 3:
-                        contaBancaria.depositarValor(null);
+                        contaBancaria.depositarValor(newUsuario);
                         break;
-
+                    case 4:
+                        contaBancaria.sacarValor(newUsuario);
+                        break;
                     default:
                         break;
                 }
             }
-        } while (opcao != 3);
+        } while (opcao != 4);
     }
 }
